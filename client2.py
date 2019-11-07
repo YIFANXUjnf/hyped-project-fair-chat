@@ -85,7 +85,13 @@ class Chat:
                 mySocket.sendto(str(sum(x)).encode('utf-8'),(SERVER_IP,PORT_NUMBER))
                 self.msg_list.insert(tk.END, "Velocity:"+str(sum(x))+"   Time:"+str(i))
                 i = i+1
-
+    def receive(self):
+        while true:
+            try:
+                msg = mySocket.recv(SIZE).decode("utf8")
+                self.msg_list.insert(tk.END, msg)
+            except OSError:
+                break
 
 intro = tk.Tk()
 intro.title("GUI")
